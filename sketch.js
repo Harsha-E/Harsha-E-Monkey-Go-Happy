@@ -83,7 +83,7 @@ function draw() {
   
   
   if(monkey.isTouching(ObstaclesGroup)){
-  //  monkey.scale = monkey.scale - 0.011;
+   monkey.scale = monkey.scale - 0.011;
     
     ObstaclesGroup.destroyEach();
   }
@@ -91,7 +91,15 @@ function draw() {
     if(keyDown("space") && monkey.y >= 300) {
        if(monkey.scale <= 0.35){
       monkey.velocityY = -13;
-    }}
+    }
+    
+    //jump when the space key is pressed
+if( (keyDown("space") || touches.length > 0) && monkey.y >= windowHeight - 300) {
+      monkey.velocityY = -13;
+        touches = [];
+    }
+    
+    }
     monkey.velocityY = monkey.velocityY + 0.5;
     
     monkey.collide(ground);   
@@ -106,7 +114,7 @@ function draw() {
   
   
     if(ObstaclesGroup.isTouching(monkey)){
-        monkey.scale = monkey.scale -11122124490;
+      
         ground.velocityX = 0;
         monkey.velocityY = 0;
         ObstaclesGroup.setVelocityXEach(0);
